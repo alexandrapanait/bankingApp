@@ -6,13 +6,17 @@ Pre-requisites
     3. Postman or other testing tool (optional)
 
 Run
-    1. git clone ..
+    1. git clone https://github.com/alexandrapanait/bankingApp.git
     2. mvn clean install 
     3. java -jar .\target\banking-0.0.1-SNAPSHOT.jar
 
 Verification
     1. App started: curl -v http://localhost:8081/api/v1/
-    2. DB: http://localhost:8081/api/v1/h2-console/ (no password)
+    2. DB: http://localhost:8081/api/v1/h2-console/ 
+       Driver Class: org.h2.Driver
+        Jdbc URL: jdbc:h2:mem:myBank
+        User Name: sa
+        Password: 
     Data is inserted in DB according to banking\src\main\resources\data.sql
 
 Testing
@@ -28,7 +32,7 @@ Testing
             - path parameter: {customerId} - required
             - query parameters: startDate, endDate - optional - timestamp
             If query parameters are missing from request, the API will return all transactions of the customer
-            If query parameters are present, the API will return all transactions with transactionDate between startDate and endDate
+            If both query parameters are present, the API will return all transactions with transactionDate between startDate and endDate
             GET http://localhost:8081/api/v1/customer/{customerId}
             GET localhost:8081/api/v1/customer/1?startDate=1667260800000&endDate=1668297600000
             Available customerId-s in DB: 1, 2 ,3
